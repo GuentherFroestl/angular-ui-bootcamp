@@ -1,0 +1,7 @@
+<!-- contacts.list.html -->
+<h3>Contact List View</h3>
+<ul>
+  <li ng-repeat="contact in contacts">
+    <a ng-href="#/contacts/detail/{{contact.id}}"> {{contact.id}}: {{contact.firstName}} {{contact.lastName}} </a>
+  </li>
+</ul>
