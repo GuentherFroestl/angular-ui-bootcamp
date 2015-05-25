@@ -1,0 +1,30 @@
+{
+  "name": "angular-ui-bootcamp",
+  "version": "1.0.0",
+  "description": "playground/scaffolding project using most popular/suited angularjs components for building complex applications. Implementing contact management use cases.e",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "node node_modules/webpack/bin/webpack --colors --progress --watch --config ./webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GuentherFroestl/angular-ui-bootcamp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuentherFroestl/angular-ui-bootcamp/issues"
+  },
+  "homepage": "https://github.com/GuentherFroestl/angular-ui-bootcamp",
+  "dependencies": {
+    "angular": "^1.3.15",
+    "angular-ui-router": "^0.2.15"
+  },
+  "devDependencies": {
+    "babel-loader": "^5.0.0",
+    "node-libs-browser": "^0.5.2",
+    "webpack": "^1.9.9",
+    "webpack-dev-server": "^1.9.0"
+  }
+}
