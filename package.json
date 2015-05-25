@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "babel-loader": "^5.0.0",
+    "html-loader": "^0.3.0",
     "node-libs-browser": "^0.5.2",
     "webpack": "^1.9.9",
     "webpack-dev-server": "^1.9.0"
