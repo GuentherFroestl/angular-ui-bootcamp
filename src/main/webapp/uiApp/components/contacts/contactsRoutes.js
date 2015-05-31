@@ -9,7 +9,7 @@
         .state('contacts', {
           abstract: true,
           url: '/contacts',
-         template: '<ui-view/>',
+          template: '<ui-view/>',
           onEnter: function ($log) {
             $log.log("enter contacts");
           },
@@ -34,9 +34,15 @@
           onEnter: function ($log) {
             $log.log("enter contacts.list");
           },
-          controller: function ($scope, $log) {
-            $log.log('contacts.list.controller');
-          }    
+          controller: 'ContactsController',
+          resolve: {simpleObj: function () {
+              return {value: 'just a text'};
+            },
+            injectedGridOptions: function (CONTACTS_GRID_DEFINITION) {
+              return CONTACTS_GRID_DEFINITION.gridOptions;
+            }
+          }
+
         })
         .state('contacts.detail', {
           url: '/detail/:id',

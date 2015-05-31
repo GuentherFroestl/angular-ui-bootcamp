@@ -1,5 +1,7 @@
 (function (pWindow) {
   pWindow.angular.module('uiApp', [
     'ui.router',
-    "uiApp.contactsModule"]);
+    'ui.grid',
+    'uiApp.common',
+    'uiApp.contactsModule']);
 })(this);
