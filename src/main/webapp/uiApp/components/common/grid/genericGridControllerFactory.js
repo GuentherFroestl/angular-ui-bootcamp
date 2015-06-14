@@ -8,14 +8,14 @@
     factory.getInstance = function (
       $scope,
       pGridOptions,
-      pServiceFunctions,
+      pDataHandlingFunctions,
       pDetailViewPath
       ) {
 
       return new GenericGridController(
         $scope,
         pGridOptions,
-        pServiceFunctions,
+        pDataHandlingFunctions,
         pDetailViewPath,
         $rootScope,
         $log,
@@ -32,7 +32,7 @@
   function GenericGridController(
     $scope,
     pGridOptions,
-    pServiceFunctions,
+    pDataHandlingFunctions,
     pDetailViewPath,
     $rootScope,
     $log,
@@ -67,9 +67,8 @@
           if (pWindow.angular.isDefined(pDetailViewPath)
             && !$scope.editModus) {
             var route = '^.detail';
-            var toParams = {id: row.entity.id};
-            $stateParams[pGridOptions.detailIdParameterName] = row.entity.id;
-            $log.log("$state.go()", route);
+            $stateParams[pDataHandlingFunctions.detailIdParameterName] = row.entity.id;
+            $log.log("$state.go()", route, '$stateParams:',$stateParams);
             $state.go(route, $stateParams);
           }
         }

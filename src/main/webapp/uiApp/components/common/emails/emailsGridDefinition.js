@@ -9,8 +9,7 @@
             {field: 'subject', displayName: 'Subject'},
             {field: 'body', displayName: 'Boday Text'}
           ],
-          data: [],
-          detailIdParameterName: 'emailId'
+          data: []
         }
     });
 

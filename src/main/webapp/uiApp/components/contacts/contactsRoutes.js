@@ -4,6 +4,8 @@
 
       // For any unmatched url, send to /route1
       $urlRouterProvider.otherwise("contacts/list");
+      var contactIdParameterName ='contactId';
+      var emailParameterName ='emailId';
 
       $stateProvider
         .state('contacts', {
@@ -38,12 +40,15 @@
           resolve: {
             injectedGridOptions: function (CONTACTS_GRID_DEFINITION) {
               return CONTACTS_GRID_DEFINITION.gridOptions;
+            },
+            detailIdParameterName: function () {
+              return {value: contactIdParameterName};
             }
           }
 
         })
         .state('contacts.detail', {
-          url: '/detail/:contactId',
+          url: '/detail/:'+contactIdParameterName,
           templateUrl: 'uiApp/components/contacts/contacts.detail.html',
           onEnter: function ($log) {
             $log.log("enter contacts.details");
@@ -97,11 +102,14 @@
           resolve: {
             injectedGridOptions: function (EMAILS_GRID_DEFINITION) {
               return EMAILS_GRID_DEFINITION.gridOptions;
+            },
+            detailIdParameterName: function () {
+              return {value: emailParameterName};
             }
           }
         })
         .state('contacts.detail.email.detail', {
-          url: '/detail/:emailId',
+          url: '/detail/:'+emailParameterName,
           templateUrl: 'uiApp/components/common/emails/email.detail.html',
           onEnter: function ($log) {
             $log.log("enter emails.details");
