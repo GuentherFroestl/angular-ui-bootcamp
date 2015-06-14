@@ -1,8 +1,14 @@
 <!-- contacts.detail.html -->
 <p>
   <a ng-href="#/contacts/list">Back to contacts list</a>
+  <a ng-href="#/contacts/detail/{{contact.id}}">{{contact.firstName}} Details</a>
+  <a ui-sref="contacts.detail.email.list({id: contact.id})">{{contact.firstName}} Emails</a>
 </p>
 <h3>Contact Detail View</h3>
 <p>
   ID: {{contact.firstName}} <br/>First Name: {{contact.firstName}} <br/>Last Name {{contact.lastName}} 
+</p>
+<p> </p>
+<p>
+<ui-view/>
 </p>

@@ -14,7 +14,7 @@
             $log.log("enter contacts");
           },
           controller: function ($scope, $log) {
-            $scope.contacts = [
+            $scope.data = [
               {
                 id: 1,
                 firstName: 'Alice',
@@ -25,7 +25,7 @@
                 firstName: 'Bob',
                 lastName: 'Mayer'
               }];
-            $log.log('define contacts: ', $scope.contacts);
+            $log.log('define contacts: ', $scope.data);
           }
         })
         .state('contacts.list', {
@@ -35,9 +35,7 @@
             $log.log("enter contacts.list");
           },
           controller: 'ContactsController',
-          resolve: {simpleObj: function () {
-              return {value: 'just a text'};
-            },
+          resolve: {
             injectedGridOptions: function (CONTACTS_GRID_DEFINITION) {
               return CONTACTS_GRID_DEFINITION.gridOptions;
             }
@@ -45,16 +43,76 @@
 
         })
         .state('contacts.detail', {
-          url: '/detail/:id',
+          url: '/detail/:contactId',
           templateUrl: 'uiApp/components/contacts/contacts.detail.html',
           onEnter: function ($log) {
             $log.log("enter contacts.details");
           },
           controller: function ($scope, $stateParams, $log) {
-            $scope.contact = $scope.contacts[$stateParams.id - 1];
+            $scope.contact = $scope.data[$stateParams.contactId - 1];
             $log.log('contacts.detail.controller: load contact', $scope.contact);
           }
-        });
+        })
+        .state('contacts.detail.email', {
+          abstract: true,
+          url: '/email',
+          onEnter: function ($log) {
+            $log.log("enter contacts.details");
+          },
+          resolve: {
+            parentObject: function ($stateParams) {
+              return {
+                class: 'contacts',
+                id: $stateParams.contactId
+              };
+            }
+          },
+          controller: function ($scope, $stateParams, parentObject, $log) {
+            $log.log('contacts.detail.emailcontroller parentObject: ', parentObject);
+            $scope.contact = $scope.data[parentObject.id - 1];
+            $scope.data = [
+              {
+                id: 1,
+                from: 'Alica Huber',
+                to: 'Bob Mayer',
+                subject: 'just a test',
+                body: 'this is a test message for Bob. '},
+              {
+                id: 2,
+                from: 'Alica Huber',
+                to: 'Bob Mayer',
+                subject: 'just a test no 2',
+                body: 'this is another test message for Bob. '}
+            ];
+          },
+          template: '<ui-view/>'
+        })
+        .state('contacts.detail.email.list', {
+          url: '/list',
+          templateUrl: 'uiApp/components/common/grid/gridList.html',
+          onEnter: function ($log) {
+            $log.log("contacts.detail.email.list");
+          },
+          controller: 'ContactsController',
+          resolve: {
+            injectedGridOptions: function (EMAILS_GRID_DEFINITION) {
+              return EMAILS_GRID_DEFINITION.gridOptions;
+            }
+          }
+        })
+        .state('contacts.detail.email.detail', {
+          url: '/detail/:emailId',
+          templateUrl: 'uiApp/components/common/emails/email.detail.html',
+          onEnter: function ($log) {
+            $log.log("enter emails.details");
+          },
+          controller: function ($scope, $stateParams, parentObject, $log) {
+            $scope.email = $scope.data[$stateParams.emailId - 1];
+            $scope.parentObject = parentObject;
+            $log.log('email.detail.controller: load email', $scope.email);
+          }
+        })
+        ;//end $stateProvider.states
     });
   ;
 })(this);

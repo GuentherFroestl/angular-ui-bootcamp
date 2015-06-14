@@ -7,7 +7,8 @@
             {field: 'firstName', displayName: 'Vorname'},
             {field: 'lastName', displayName: 'Nachname'}
           ],
-          data: []
+          data: [],
+          detailIdParameterName: 'contactId'
         }
     });
 
