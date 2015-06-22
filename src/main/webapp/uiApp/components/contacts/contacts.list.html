@@ -1,7 +1,31 @@
 <!-- contacts.list.html -->
-<div>
-<h3>Contact List View</h3>
+<div layout-align="left center" layout="row">
 
+  <div>
+    <md-input-container md-no-float>
+      <input ng-model="user.phone" type="text" placeholder="search text">
+    </md-input-container>
+  </div>
+  <div>
+    <md-button class="md-icon-button" aria-label="Details"  
+               layout-align="center center"
+               ui-sref="^.detail({contactId: contact.id})">
+      <i class="material-icons">search</i>
+      <md-tooltip md-direction="top">
+        search contacts
+      </md-tooltip>
+    </md-button>
+  </div>
+  <div>
+    <md-button class="md-icon-button" aria-label="Details"  
+               layout-align="center center"
+               ui-sref="^.detail({contactId: contact.id})">
+      <i class="material-icons">person_add</i>
+      <md-tooltip md-direction="top">
+        add new contact
+      </md-tooltip>
+    </md-button>
+  </div>
 
-<div ng-include="'uiApp/components/common/grid/gridList.html'"></div>
 </div>
+<div ng-include="'uiApp/components/common/grid/gridList.html'"></div>

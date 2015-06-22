@@ -4,18 +4,28 @@
 
       // For any unmatched url, send to /route1
       $urlRouterProvider.otherwise("contacts/list");
-      var contactIdParameterName ='contactId';
-      var emailParameterName ='emailId';
+      var contactIdParameterName = 'contactId';
+      var emailParameterName = 'emailId';
 
       $stateProvider
+        .state('home', {
+          url: '/home',
+          templateUrl: 'uiApp/components/home/home.html',
+          controller: function ($scope, $log, $rootScope) {
+            $rootScope.$emit("mainIcon", "home");
+            $log.log('enter home page ');
+          }
+        })
         .state('contacts', {
           abstract: true,
           url: '/contacts',
           template: '<ui-view/>',
           onEnter: function ($log) {
+
             $log.log("enter contacts");
           },
-          controller: function ($scope, $log) {
+          controller: function ($scope, $log, $rootScope) {
+            $rootScope.$emit("mainIcon", "person");
             $scope.data = [
               {
                 id: 1,
@@ -48,7 +58,7 @@
 
         })
         .state('contacts.detail', {
-          url: '/detail/:'+contactIdParameterName,
+          url: '/detail/:' + contactIdParameterName,
           templateUrl: 'uiApp/components/contacts/contacts.detail.html',
           onEnter: function ($log) {
             $log.log("enter contacts.details");
@@ -109,7 +119,7 @@
           }
         })
         .state('contacts.detail.email.detail', {
-          url: '/detail/:'+emailParameterName,
+          url: '/detail/:' + emailParameterName,
           templateUrl: 'uiApp/components/common/emails/email.detail.html',
           onEnter: function ($log) {
             $log.log("enter emails.details");

@@ -1,14 +1,87 @@
 <!-- contacts.detail.html -->
-<p>
-  <a ui-sref="^.list()">Back to contacts list</a>
-  <a ui-sref="^.detail({contactId: contact.id})">{{contact.firstName}} Details</a>
-  <a ui-sref="^.detail.email.list({contactId: contact.id})">{{contact.firstName}} Emails</a>
-</p>
-<h3>Contact Detail View</h3>
-<p>
-  ID: {{contact.firstName}} <br/>First Name: {{contact.firstName}} <br/>Last Name {{contact.lastName}} 
-</p>
-<p> </p>
-<p>
-<ui-view/>
-</p>
+<div flex="90" layout="column" layout-margin>
+  <div layout="row">
+    <div>
+      <md-button class="md-icon-button" aria-label="Contact List"  
+                 layout-align="center center"
+                 ui-sref="^.list()">
+        <i class="material-icons ">view_list</i>
+        <md-tooltip md-direction="top">
+          back to contacts list
+        </md-tooltip>
+      </md-button>
+    </div>
+    <div>
+      <md-button class="md-icon-button" aria-label="Details"  
+                 layout-align="center center"
+                 ui-sref="^.detail({contactId: contact.id})">
+        <i class="material-icons">mode_edit</i>
+        <md-tooltip md-direction="top">
+          edit contact details
+        </md-tooltip>
+      </md-button>
+    </div>
+    <div>
+      <md-button class="md-icon-button" aria-label="More"  
+                 layout-align="center center"
+                 ui-sref="^.detail.email.list({contactId: contact.id})">
+        <i class="material-icons">email</i>
+        <md-tooltip md-direction="top">
+          show contact emails
+        </md-tooltip>
+      </md-button>
+    </div>
+    <div>
+      <md-button class="md-icon-button" aria-label="More"  
+                 layout-align="center center">
+        <i class="material-icons">folder</i>
+        <md-tooltip md-direction="top">
+          show contact projects
+        </md-tooltip>
+      </md-button>
+    </div>
+  </div>
+  <div layout="column"  layout-margin >
+    <md-content layout-padding>
+      <form name="userForm">
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>First name</label>
+            <input ng-model="contact.firstName">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Last Name</label>
+            <input ng-model="contact.lastName">
+          </md-input-container>
+        </div>
+        <md-input-container flex>
+          <label>Address</label>
+          <input ng-model="user.address">
+        </md-input-container>
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>City</label>
+            <input ng-model="user.city">
+          </md-input-container>
+          <md-input-container flex>
+            <label>State</label>
+            <input ng-model="user.state">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Postal Code</label>
+            <input ng-model="user.postalCode">
+          </md-input-container>
+        </div>
+        <md-input-container flex>
+          <label>Biography</label>
+          <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
+        </md-input-container>
+      </form>
+    </md-content>
+
+
+    <div>
+      <ui-view/>
+    </div>
+  </div>
+</div>
