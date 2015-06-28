@@ -1,5 +1,6 @@
 node_modules
 build
+nb-configuration.xml
 npm-debug.log
 .DS_Store
 target/
